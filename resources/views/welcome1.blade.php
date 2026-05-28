@@ -12,13 +12,27 @@
         <div class="sidebar-panel">
             <!-- Button list -->
             <li>
-                <ul>Home</ul>
-                <ul>Journal</ul>
-                <ul>Donate</ul>
-                <ul>Schedule</ul>
-                <ul>Document</ul>
-                <ul>Account</ul>
-                <ul>More</ul>
+                <ul>
+                    <button>Home</button>
+                </ul>
+                <ul>
+                    <button>Journal</button>
+                </ul>
+                <ul>
+                    <button>Donate</button>
+                </ul>
+                <ul>
+                    <button>Schedule</button>
+                </ul>
+                <ul>
+                    <button>Document</button>
+                </ul>
+                <ul>
+                    <button>Account</button>
+                </ul>
+                <ul>
+                    <button>More</button>
+                </ul>
             </li>
         </div>
         <div class="maiin-panel"></div>
