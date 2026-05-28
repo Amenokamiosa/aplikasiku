@@ -10,31 +10,29 @@
 <body>
     <div class="main-frame">
         <div class="sidebar-panel">
-            <!-- Button list -->
-            <li>
-                <ul>
-                    <a href="https://www.instagram.com/clauveris_/"><button>Home</button></a>
-                    
-                </ul>
-                <ul>
-                    <button>Journal</button>
-                </ul>
-                <ul>
-                    <button>Donate</button>
-                </ul>
-                <ul>
-                    <button>Schedule</button>
-                </ul>
-                <ul>
-                    <button>Document</button>
-                </ul>
-                <ul>
-                    <button>Account</button>
-                </ul>
-                <ul>
-                    <button>More</button>
-                </ul>
-            </li>
+            <ul class="sidebar-list">
+                <li>
+                    <a href="{{ url('/') }}" class="sidebar-btn">Home</a>
+                </li>
+                <li>
+                    <a href="{{ url('/journal') }}" class="sidebar-btn">Journal</a>
+                </li>
+                <li>
+                    <a href="{{ url('/donate') }}" class="sidebar-btn">Donate</a>
+                </li>
+                <li>
+                    <a href="{{ url('/schedule') }}" class="sidebar-btn">Schedule</a>
+                </li>
+                <li>
+                    <a href="{{ url('/document') }}" class="sidebar-btn">Document</a>
+                </li>
+                <li>
+                    <a href="{{ url('/account') }}" class="sidebar-btn">Account</a>
+                </li>
+                <li>
+                    <a href="#" class="sidebar-btn">More</a>
+                </li>
+            </ul>
         </div>
         <div class="maiin-panel"></div>
     </div>
