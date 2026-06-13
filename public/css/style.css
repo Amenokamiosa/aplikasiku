@@ -1,13 +1,76 @@
-*{
-    padding: 0;
-    margin: 0;
+
+
+.tree-container{
+    width: 297px;
+    height: 462px;
+    background-color: #ebebeb;
+    border-radius: 50px;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
 }
-.menu{
-    width: 1920px;
-    height: 1080px;
-    background-color: aquamarine;
+.tree-img-container{
+    width: 250px;
+    height: 209px;
+    border-radius: 40px;
+    overflow: hidden;
+    background-color: blueviolet;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
 }
-.menu h1{
-    color: blue;
-    background-color: aquamarine;
+.tree-img{
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
 }
+.tree-section{
+    width: 100%;
+    height: fit-content;
+    background-color: rgb(255, 255, 255);
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.tree-name{
+    font-size: 22px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 500;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+.tree-price{
+    font-size: 22px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 300;
+    padding-bottom: 10px;
+}
+.input-quantity{
+    margin-top: 20px;
+    border-radius: 35px;
+    border-width: 0;
+    height: 40px;
+    width: 200px;
+    font-size: 20px;
+    text-align: center;
+}
+.label-total-donasi{
+    font-size: 22px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 400;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    color: forestgreen;
+}
+

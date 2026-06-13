@@ -2,22 +2,44 @@
 <html>
 <head>
     <title>Daftar Pohon Donasi</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
-    <div class="container">
-    <div class="row">
+    <div class="tree-section">
         @foreach ($trees as $pohon)
-            <div class="col-md-4 mb-4">
-                <div class="product-card">
-                    <img src="{{ $pohon['Img'] }}" alt="">
-
-                    <h3 class="product-name">{{ $pohon['Name'] }}</h3>
-                    <p class="product-price">Rp {{ number_format($pohon['Price'], 0, ',', '.') }}</p>
-
-                </div>
-            </div>
+        <div class="col-md-4 mb-4">
+            @include('Components.display', [
+                'pohon' => $pohon
+            ])
+        </div>
         @endforeach
+        <label class="TotalValue"></label>
     </div>
-</div>
+
+    
+    <script>
+    const semuaKartu = document.querySelectorAll('.tree-container');
+
+    semuaKartu.forEach(kartu => {
+        const inputQty = kartu.querySelector('.input-quantity');
+        const labelHarga = kartu.querySelector('.tree-price');
+        const displayTotal = kartu.querySelector('.label-total-donasi');
+
+        const hargaSatuan = parseInt(labelHarga.getAttribute('data-harga'));
+
+        inputQty.addEventListener('input', function() {
+            let qty = parseInt(inputQty.value);
+
+            // Perbaikan: Membenarkan posisi kurung isNaN
+            if (isNaN(qty) || qty < 0) {
+                qty = 0;
+            }
+
+            const totalHarga = hargaSatuan * qty;
+
+            displayTotal.innerText = 'Rp ' + totalHarga.toLocaleString('id-ID');
+        });
+    });
+    
+</script>
 </body>
