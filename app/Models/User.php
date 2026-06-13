@@ -17,6 +17,12 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
+    // Beri tahu Laravel bahwa primary key-nya adalah id_user
+    protected $primaryKey = 'id_user'; 
+
+    // Jika Anda TIDAK menambahkan $table->timestamps() di migration, aktifkan baris di bawah ini:
+    // public $timestamps = false;
+    
     protected $fillable = [
         'username',
         'password',
