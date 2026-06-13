@@ -6,10 +6,17 @@ use App\Http\Controllers\AuthController;
 
 use App\Models\User;
 
-Route::redirect('/', '/login');
-
+use Illuminate\Support\Facades\Auth;
 Route::get('/test', function () {
     return User::all();
+});
+
+Route::get('/', function () {
+    if (Auth::check()) {
+        return redirect('/pohon');
+    }
+
+    return redirect('/login');
 });
 
 Route::middleware('guest')->group(function () {
@@ -19,4 +26,21 @@ Route::middleware('guest')->group(function () {
     Route::post('/registrasi', [AuthController::class, 'register']);
 });
 
-Route::get('/pohon', [TreeController::class, 'index']);
+Route::middleware('auth')->group(function () {
+    Route::get('/pohon', [TreeController::class, 'index'])->name('pohon');
+});
+
+Route::post('/logout', [AuthController::class, 'logout'])
+    ->middleware('auth')
+    ->name('logout');
+
+
+
+Route::get('/debug-auth', function () {
+    return [
+        'check' => Auth::check(),
+        'id' => Auth::id(),
+        'user' => Auth::user()?->username,
+    ];
+});
+    

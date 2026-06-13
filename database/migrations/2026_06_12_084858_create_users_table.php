@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('display_name', 100)->nullable();
             $table->string('header_img', 100)->nullable();
             $table->string('profile_img', 100)->nullable();
+            $table->timestamps();
         });
     }
 

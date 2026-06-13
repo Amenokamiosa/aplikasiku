@@ -5,6 +5,10 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
+    <form action="{{ route('logout') }}" method="POST" style="text-align: right; margin: 20px;">
+        @csrf
+        <button type="submit">Logout</button>
+    </form>
     <div class="tree-section">
         @foreach ($trees as $pohon)
         <div class="col-md-4 mb-4">
