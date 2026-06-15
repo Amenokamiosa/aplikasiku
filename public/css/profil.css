@@ -1,0 +1,330 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f5f5;
+    color: #222;
+}
+
+/* HEADER */
+
+.display-name{
+    margin-top:20px;
+
+    font-size:40px;
+    font-weight:500;
+
+    text-align:center;
+}
+
+.username{
+    margin-top:8px;
+
+    color:#444;
+
+    font-size:20px;
+
+    text-align:center;
+}
+
+.profile-header{
+    width:100%;
+    height:260px;
+    overflow:hidden;
+    position:relative;
+}
+
+.profile-header img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* PROFILE INFO */
+
+.profile-info{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    position:relative;
+
+    margin-top:-90px;
+
+    z-index:10;
+}
+
+.profile-info img{
+    display:block;
+}
+
+.profile-photo-wrapper{
+    position:relative;
+}
+
+.profile-photo{
+    width:180px;
+    height:180px;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:8px solid #f5f5f5;
+
+    background:white;
+
+    box-shadow:0 4px 15px rgba(0,0,0,0.15);
+}
+
+.profile-placeholder{
+    width:180px;
+    height:180px;
+
+    border-radius:50%;
+
+    background:#ececec;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:70px;
+
+    border:8px solid #f5f5f5;
+}
+
+/* BUTTON */
+
+.edit-profile-btn{
+    position:absolute;
+
+    top:10px;
+    right:10px;
+
+    width:40px;
+    height:40px;
+
+    border-radius:50%;
+
+    background:white;
+
+    text-decoration:none;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    box-shadow:0 2px 8px rgba(0,0,0,0.2);
+
+    font-size:18px;
+
+    transition:0.2s;
+}
+
+.edit-profile-btn:hover{
+    transform:scale(1.1);
+}
+
+.back-btn{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+
+    z-index: 20;
+
+    background: white;
+    padding: 10px 16px;
+    border-radius: 10px;
+
+    text-decoration: none;
+    color: black;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+
+.logout-form{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    z-index: 20;
+}
+
+.logout-btn{
+    background: #dc3545;
+    color: white;
+
+    border: none;
+
+    padding: 10px 16px;
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+
+
+
+/* DONASI */
+
+.donation-section{
+    width: 95%;
+    margin: 40px auto;
+}
+
+.donation-section h2{
+    margin-bottom: 20px;
+}
+
+/* CARD DONASI */
+
+.donation-card{
+    background: #d8ccb4;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+.donation-top{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 18px 25px;
+}
+
+.donation-label{
+    font-size: 30px;
+    font-weight: bold;
+    color: #a68d67;
+    min-width: 120px;
+}
+
+.donation-title{
+    font-weight: bold;
+    color: #6b4d24;
+}
+
+.donation-image{
+    height: 12px;
+    background-image: url('../images/forest.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.donation-bottom{
+    display: flex;
+    align-items: center;
+    padding: 15px 30px;
+    gap: 20px;
+}
+
+.donation-value-label{
+    font-size: 24px;
+    font-weight: bold;
+    color: #a68d67;
+}
+
+.donation-value{
+    font-size: 24px;
+    font-weight: bold;
+    color: #6b4d24;
+}
+
+/*EDIT PROFIL*/
+
+.empty-header{
+    width:100%;
+    height:100%;
+    background:#d9d9d9;
+}
+
+.edit-header-btn{
+    position:absolute;
+
+    bottom:20px;
+    right:20px;
+
+    width:50px;
+    height:50px;
+
+    border-radius:50%;
+
+    background:white;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    cursor:pointer;
+
+    font-size:22px;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.2);
+}
+
+.name-edit-section{
+    margin-top:20px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.name-edit-section label{
+    margin-bottom:10px;
+    font-weight:bold;
+}
+
+.display-input{
+    width:300px;
+
+    padding:12px;
+
+    border:1px solid #ccc;
+    border-radius:10px;
+
+    text-align:center;
+    font-size:20px;
+}
+
+.save-section{
+    display:flex;
+    justify-content:center;
+
+    margin-top:40px;
+}
+
+.save-btn{
+    padding:15px 35px;
+
+    border:none;
+    border-radius:12px;
+
+    background:#5d7a3f;
+
+    color:white;
+
+    font-size:18px;
+    cursor:pointer;
+}
+
+.save-btn:hover{
+    opacity:0.9;
+}
+
+.error-box{
+    background:#ffdede;
+    color:#b30000;
+
+    padding:15px;
+    margin:20px;
+
+    border-radius:10px;
+}

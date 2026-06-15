@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil Saya</title>
 
-    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/profil.css') }}">
 </head>
 <body>
 
@@ -17,6 +17,17 @@
 
     <!-- Header Image -->
     <div class="profile-header">
+
+    <a href="{{ route('pohon') }}" class="back-btn">
+        ← Kembali
+    </a>
+
+    <form action="{{ route('logout') }}" method="POST" class="logout-form">
+        @csrf
+        <button type="submit" class="logout-btn">
+            Logout
+        </button>
+    </form>
 
         @if($user->header_img)
             <img
@@ -37,112 +48,70 @@
     <!-- Profile Section -->
     <div class="profile-info">
 
+    <div class="profile-photo-wrapper">
+
         @if($user->profile_img)
             <img
                 src="{{ asset('storage/' . $user->profile_img) }}"
                 alt="Profile Image"
-                width="150"
-                height="150">
+                class="profile-photo">
         @else
-            <div style="
-                width:150px;
-                height:150px;
-                border-radius:50%;
-                background:#ccc;
-                display:flex;
-                justify-content:center;
-                align-items:center;
-                font-size:50px;
-            ">
+            <div class="profile-placeholder">
                 👤
             </div>
         @endif
 
-        <h1>
-            {{ $user->display_name ?? 'Belum Mengatur Nama' }}
-        </h1>
-
-        <p>
-            @{{ $user->username }}
-        </p>
-
-    </div>
-
-    <hr>
-
-    <!-- Informasi Akun -->
-    <div>
-
-        <h2>Informasi Akun</h2>
-
-        <table border="1" cellpadding="10">
-
-            <tr>
-                <td>ID User</td>
-                <td>{{ $user->id_user }}</td>
-            </tr>
-
-            <tr>
-                <td>Display Name</td>
-                <td>{{ $user->display_name ?? '-' }}</td>
-            </tr>
-
-            <tr>
-                <td>Username</td>
-                <td>{{ $user->username }}</td>
-            </tr>
-
-            <tr>
-                <td>Dibuat Pada</td>
-                <td>{{ $user->created_at }}</td>
-            </tr>
-
-        </table>
-
-    </div>
-
-    <br>
-
-    <!-- Tombol -->
-    <div>
-
-        <a href="{{ route('profil.edit') }}">
-            <button type="button">
-                Edit Profil
-            </button>
+        <a href="{{ route('profil.edit') }}" class="edit-profile-btn">
+            ✏️
         </a>
 
-        <a href="{{ route('pohon') }}">
-            <button type="button">
-                Kembali ke Daftar Pohon
-            </button>
-        </a>
+    </div>
 
-        <form
-            action="{{ route('logout') }}"
-            method="POST"
-            style="display:inline;">
+    <h1 class="display-name">
+        {{ $user->display_name ?? 'Belum Mengatur Nama' }}
+    </h1>
 
-            @csrf
-
-            <button type="submit">
-                Logout
-            </button>
-
-        </form>
+    <p class="username">
+        {{ $user->username }}
+    </p>
 
     </div>
 
-    <hr>
 
     <!-- Riwayat Donasi (sementara) -->
-    <div>
+    <div class="donation-section">
 
-        <h2>Riwayat Donasi</h2>
+    <div class="donation-card">
 
-        <p>
-            Belum ada data donasi.
-        </p>
+        <div class="donation-top">
+
+            <div class="donation-label">
+                DONASI
+            </div>
+
+            <div class="donation-title">
+                Penanaman Bibit Bakau di Pantai Cemara
+            </div>
+
+        </div>
+
+        <div class="donation-image"></div>
+
+        <div class="donation-bottom">
+
+            <div class="donation-value-label">
+                NILAI
+            </div>
+
+            <div class="donation-value">
+                RP 200.000,-
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
         {{--
         Nanti jika sudah membuat tabel donations:
@@ -157,7 +126,6 @@
         @endforeach
         --}}
 
-    </div>
 
 </body>
 </html>
