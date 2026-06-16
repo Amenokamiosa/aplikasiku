@@ -11,7 +11,7 @@
 <div class="container">
     <div class="sidebar">
 
-        <a href="{{ route('pohon') }}" class="menu-btn">
+        <a href="{{ route('events.index') }}" class="menu-btn">
             🌱 DONATE
         </a>
 
@@ -19,7 +19,7 @@
             👤 ACCOUNT
         </a>
 
-        <a href="{{ route('pohon') }}" class="back-btn-side">
+        <a href="{{ route('events.index') }}" class="back-btn-side">
             Back
         </a>
 

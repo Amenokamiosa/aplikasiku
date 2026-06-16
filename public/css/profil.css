@@ -450,3 +450,28 @@ body{
     background:#ffffff87;
     border:2px solid #7f944a;
 }
+
+.back-btn{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+
+    z-index: 20;
+
+    background: white;
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    font-weight: 500;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 44px;
+    padding: 0 16px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}

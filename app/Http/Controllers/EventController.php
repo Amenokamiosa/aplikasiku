@@ -9,11 +9,18 @@ class EventController extends Controller
 {
     public function index()
     {
+    $events = Event::all();
+
+    return view('event', compact('events'));
+    }
+    
+    /*public function index()
+    {
         // 1. Ambil data dari model
         $daftarEvent = Event::getAvailableEvent();
         // 2. Kirim data ke View bernama 'pohon'
         return view ('pohon',['events' => $daftarEvent]); 
-    }
+    }*/
 
     // Fungsi untuk menampilkan form
     public function create()
@@ -27,7 +34,7 @@ class EventController extends Controller
         // 1. Validasi data yang masuk (Opsional tapi disarankan)
         $validated = $request->validate([
             'title' => 'required|string',
-            'header_img' => 'required|url',
+            'header_img' => 'required|image|mimes:jpg,jpeg,png|max:5120',
             'description' => 'required',
             'start' => 'required',
             'finish' => 'required',
@@ -39,5 +46,12 @@ class EventController extends Controller
             'message' => 'Data berhasil diterima oleh Controller!',
             'data' => $validated
         ]);
+    }
+    public function show($id)
+    {
+    $event = Event::with('trees')
+        ->findOrFail($id);
+
+    return view('event-detail', compact('event'));
     }
 }

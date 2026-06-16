@@ -24,7 +24,7 @@ class TreeController extends Controller
         // Catatan: Sesuaikan 'quantity' atau field lain jika form pohonmu menggunakan input jumlah/harga/total donasi
         $validated = $request->validate([
             'title'      => 'required|string',
-            'header_img' => 'required|url',
+            'header_img' => 'required|image|mimes:jpg,jpeg,png|max:5120',
             'price'      => 'required|numeric', // Tambahkan 'numeric' jika inputnya harus angka
         ]);
 
