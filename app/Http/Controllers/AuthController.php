@@ -63,14 +63,14 @@ class AuthController extends Controller
 
     public function profile()
 {
-    return view('profil', [
+    return view('profil.profil', [
         'user' => Auth::user()
     ]);
 }
 
     public function editProfile()
 {
-    return view('profil-edit', [
+    return view('profil.profil-edit', [
         'user' => Auth::user()
     ]);
 }

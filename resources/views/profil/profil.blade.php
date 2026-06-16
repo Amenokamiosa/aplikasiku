@@ -24,16 +24,16 @@
     <!-- Header Image -->
     <div class="profile-header">
 
-    <a href="{{ route('pohon') }}" class="back-btn">
-        ← Kembali
-    </a>
+        <a href="{{ route('pohon') }}" class="back-btn">
+            ← Kembali
+        </a>
 
-    <form action="{{ route('logout') }}" method="POST" class="logout-form">
-        @csrf
-        <button type="submit" class="logout-btn">
-            Logout
-        </button>
-    </form>
+        <form action="{{ route('logout') }}" method="POST" class="logout-form">
+            @csrf
+            <button type="submit" class="logout-btn">
+                Logout
+            </button>
+        </form>
 
         @if($user->header_img)
             <img
@@ -54,55 +54,55 @@
     <!-- Profile Section -->
     <div class="profile-info">
 
-    <div class="profile-photo-wrapper">
+        <div class="profile-photo-wrapper">
 
-        @if($user->profile_img)
-            <img
-                src="{{ asset('storage/' . $user->profile_img) }}"
-                alt="Profile Image"
-                class="profile-photo">
-        @else
-            <div class="profile-placeholder">
-                👤
-            </div>
-        @endif
+            @if($user->profile_img)
+                <img
+                    src="{{ asset('storage/' . $user->profile_img) }}"
+                    alt="Profile Image"
+                    class="profile-photo">
+            @else
+                <div class="profile-placeholder">
+                    👤
+                </div>
+            @endif
 
-        <a href="{{ route('profil.edit') }}" class="edit-profile-btn">
+            <a href="{{ route('profil.edit') }}" class="edit-profile-btn">
             ✏️
-        </a>
+            </a>
 
+        </div>
+
+        <h1 class="display-name">
+            {{ $user->display_name ?? 'Belum Mengatur Nama' }}
+        </h1>
+
+        <p class="username">
+            {{ $user->username }}
+        </p>
+
+        </div>
+
+    <div class="profile-divider">
+        <span>Riwayat Donasi</span>
     </div>
-
-    <h1 class="display-name">
-        {{ $user->display_name ?? 'Belum Mengatur Nama' }}
-    </h1>
-
-    <p class="username">
-        {{ $user->username }}
-    </p>
-
-    </div>
-
-<div class="profile-divider">
-    <span>Riwayat Donasi</span>
-</div>
 
     <!-- Riwayat Donasi (sementara) -->
     <div class="donation-section">
 
-    <div class="donation-card">
+        <div class="donation-card">
 
-        <div class="donation-top">
+            <div class="donation-top">
 
-            <div class="donation-label">
-                DONASI
+                <div class="donation-label">
+                    DONASI
+                </div>
+
+                <div class="donation-title">
+                    Penanaman Bibit Bakau di Pantai Cemara
+                </div>
+
             </div>
-
-            <div class="donation-title">
-                Penanaman Bibit Bakau di Pantai Cemara
-            </div>
-
-        </div>
 
         <div class="donation-image"></div>
 

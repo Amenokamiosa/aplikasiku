@@ -10,15 +10,15 @@
 
 <body>
 
-@if ($errors->any())
-    <div class="error-box">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+    @if ($errors->any())
+        <div class="error-box">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
 <form
     action="{{ route('profil.update') }}"
@@ -65,29 +65,29 @@
 
         <div class="profile-photo-wrapper">
 
-        @if($user->profile_img)
-            <img
-                id="profilePreview"
-                src="{{ asset('storage/' . $user->profile_img) }}"
-                class="profile-photo">
-        @else
-            <img
-                id="profilePreview"
-                src="{{ asset('img/default-profile.png') }}"
-                class="profile-photo">
-        @endif
+            @if($user->profile_img)
+                <img
+                    id="profilePreview"
+                    src="{{ asset('storage/' . $user->profile_img) }}"
+                    class="profile-photo">
+            @else
+                <img
+                    id="profilePreview"
+                    src="{{ asset('img/default-profile.png') }}"
+                    class="profile-photo">
+            @endif
 
-        <label for="profileInput" class="edit-profile-btn">
-        📷
-        </label>
+            <label for="profileInput" class="edit-profile-btn">
+            📷
+            </label>
 
-        <input
-            id="profileInput"
-            type="file"
-            name="profile_img"
-            hidden>
+            <input
+                id="profileInput"
+                type="file"
+                name="profile_img"
+                hidden>
+        </div>
 
-    </div>
         <div class="name-edit-section">
 
             <label>Display Name</label>
