@@ -139,13 +139,8 @@ body{
     z-index: 20;
 
     background: white;
-    padding: 10px 16px;
-    border-radius: 10px;
-
     text-decoration: none;
     color: black;
-
-    box-shadow: 0 2px 8px rgba(0,0,0,.2);
 }
 
 .logout-form{
@@ -162,14 +157,29 @@ body{
 
     border: none;
 
-    padding: 10px 16px;
-    border-radius: 10px;
-
     cursor: pointer;
+}
+
+.logout-btn:hover{
+    background: #ed4b5b;
+}
+
+.back-btn,
+.logout-btn{
+    font-size: 16px;
+    font-weight: 500;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 44px;
+    padding: 0 16px;
+
+    border-radius: 10px;
 
     box-shadow: 0 2px 8px rgba(0,0,0,.2);
 }
-
 
 
 /* DONASI */
@@ -250,6 +260,8 @@ body{
 
     bottom:20px;
     right:20px;
+    
+    z-index: 999;
 
     width:50px;
     height:50px;
@@ -307,7 +319,7 @@ body{
     border:none;
     border-radius:12px;
 
-    background:#5d7a3f;
+    background:#7A8F45;
 
     color:white;
 
@@ -327,4 +339,42 @@ body{
     margin:20px;
 
     border-radius:10px;
+}
+
+.success-alert{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    z-index: 9999;
+}
+
+/* SECTION RIWAYAT DONASI */
+.profile-divider{
+    width: 100%;
+    max-width: 1000px;
+
+    margin: 40px auto 20px;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile-divider::before,
+.profile-divider::after{
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #d4d4d4;
+}
+
+.profile-divider span{
+    font-size: 18px;
+    font-weight: 600;
+    color: #666;
+    white-space: nowrap;
 }

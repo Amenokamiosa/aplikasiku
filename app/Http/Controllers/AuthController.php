@@ -80,8 +80,8 @@ public function updateProfile(Request $request)
 
     $request->validate([
         'display_name' => 'nullable|max:100',
-        'profile_img' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-        'header_img' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
+        'profile_img' => 'nullable|image|mimes:jpg,jpeg,png|max:5120',
+        'header_img' => 'nullable|image|mimes:jpg,jpeg,png|max:10240',
     ]);
 
     $user->display_name = $request->display_name;

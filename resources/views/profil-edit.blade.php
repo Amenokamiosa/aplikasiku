@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="{{ asset('css/profil.css') }}">
 </head>
+
 <body>
 
 @if ($errors->any())
@@ -31,24 +32,30 @@
     <div class="profile-header">
 
         <a href="{{ route('profil') }}" class="back-btn">
-            ← Kembali
+        ← Kembali
         </a>
 
         @if($user->header_img)
             <img
+                id="headerPreview"
                 src="{{ asset('storage/' . $user->header_img) }}"
                 alt="Header">
         @else
-            <div class="empty-header"></div>
+            <img
+                id="headerPreview"
+                src="{{ asset('img/background.png') }}"
+                alt="Header">
         @endif
 
-        <label class="edit-header-btn">
+        <label for="headerInput" class="edit-header-btn">
             📷
-            <input
-                type="file"
-                name="header_img"
-                hidden>
         </label>
+
+        <input
+            id="headerInput"
+            type="file"
+            name="header_img"
+            hidden>
 
     </div>
 
@@ -58,26 +65,29 @@
 
         <div class="profile-photo-wrapper">
 
-            @if($user->profile_img)
-                <img
-                    src="{{ asset('storage/' . $user->profile_img) }}"
-                    class="profile-photo">
-            @else
-                <div class="profile-placeholder">
-                    👤
-                </div>
-            @endif
+        @if($user->profile_img)
+            <img
+                id="profilePreview"
+                src="{{ asset('storage/' . $user->profile_img) }}"
+                class="profile-photo">
+        @else
+            <img
+                id="profilePreview"
+                src="{{ asset('img/default-profile.png') }}"
+                class="profile-photo">
+        @endif
 
-            <label class="edit-profile-btn">
-                📷
-                <input
-                    type="file"
-                    name="profile_img"
-                    hidden>
-            </label>
+        <label for="profileInput" class="edit-profile-btn">
+        📷
+        </label>
 
-        </div>
+        <input
+            id="profileInput"
+            type="file"
+            name="profile_img"
+            hidden>
 
+    </div>
         <div class="name-edit-section">
 
             <label>Display Name</label>
@@ -111,6 +121,32 @@
     </div>
 
 </form>
+<script>
+    const headerInput = document.getElementById('headerInput');
+    const headerPreview = document.getElementById('headerPreview');
 
+    headerInput.addEventListener('change', function () {
+
+        const file = this.files[0];
+
+        if(file){
+            headerPreview.src = URL.createObjectURL(file);
+        }
+
+    });
+
+    const profileInput = document.getElementById('profileInput');
+    const profilePreview = document.getElementById('profilePreview');
+
+    profileInput.addEventListener('change', function () {
+
+        const file = this.files[0];
+
+        if(file){
+            profilePreview.src = URL.createObjectURL(file);
+        }
+
+    });
+</script>
 </body>
 </html>

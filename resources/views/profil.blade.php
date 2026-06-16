@@ -4,15 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil Saya</title>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="{{ asset('css/profil.css') }}">
 </head>
 <body>
 
     @if(session('success'))
-        <div>
-            {{ session('success') }}
-        </div>
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: '{{ session('success') }}',
+            timer: 3000,
+            showConfirmButton: false
+        });
+    </script>
     @endif
 
     <!-- Header Image -->
@@ -36,11 +42,11 @@
                 width="100%"
                 height="250">
         @else
-            <div style="height:250px; background:#ddd;">
-                <h3 style="padding:100px 20px;">
-                    Belum ada Header Image
-                </h3>
-            </div>
+            <img
+                src="{{ asset('img/background.png') }}"
+                alt="Default Header"
+                width="100%"
+                height="250">
         @endif
 
     </div>
@@ -77,6 +83,9 @@
 
     </div>
 
+<div class="profile-divider">
+    <span>Riwayat Donasi</span>
+</div>
 
     <!-- Riwayat Donasi (sementara) -->
     <div class="donation-section">
@@ -111,7 +120,8 @@
 
     </div>
 
-</div>
+    </div>
+</script>
 
         {{--
         Nanti jika sudah membuat tabel donations:
