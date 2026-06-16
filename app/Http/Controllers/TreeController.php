@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tree;
 use Illuminate\Http\Request;
 use App\Models\Event;
+use Illuminate\Support\Facades\Storage;
 
 class TreeController extends Controller
 {
