@@ -23,6 +23,15 @@ class Event extends Model
     {
     return $this->hasMany(Donation::class, 'id_event', 'id_event');
     }
+    public function trees()
+    {
+    return $this->belongsToMany(
+        Tree::class,
+        'event_tree',
+        'id_event',
+        'id_tree'
+    );
+    }
     // 1. Perbaikan: 'public' menggunakan huruf kecil
     public static function getAvailableEvent()
     {

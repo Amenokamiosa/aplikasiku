@@ -5,6 +5,23 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
+    <div class="container">
+    <div class="sidebar">
+
+        <a href="{{ route('pohon') }}" class="menu-btn active">
+            🌱 DONATE
+        </a>
+
+        <a href="{{ route('profil') }}" class="menu-btn">
+            👤 ACCOUNT
+        </a>
+
+        <a href="{{ route('pohon') }}" class="back-btn-side">
+            Back
+        </a>
+
+    </div>
+    <div class="main-content">
     <a href="{{ route('profil') }}">
     Profil Saya
     </a>
@@ -71,5 +88,7 @@
         });
     });
 </script>
+</div>
+</div>
 </body>
 </html>

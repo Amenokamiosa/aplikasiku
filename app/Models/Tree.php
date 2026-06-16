@@ -15,6 +15,17 @@ class Tree extends Model
         'tree_img',
         'price'
     ];
+
+    public function events()
+    {
+        return $this->belongsToMany(
+            Event::class,
+            'event_tree',
+            'id_tree',
+            'id_event'
+        );
+    }
+    
     
     public static function getAvailableTrees()
     {

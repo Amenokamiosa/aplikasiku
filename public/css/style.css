@@ -1,4 +1,14 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f5f5;
+    color: #222;
+}
 
 .tree-container{
     width: 297px;
@@ -274,4 +284,84 @@
 .menu-item:active {
     transform: translateY(2px); /* Efek tertekan ke bawah */
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+
+.container{
+    display:flex;
+    min-height:100vh;
+}
+
+.sidebar{
+    width:160px;
+    background:#7f944a;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    position:fixed;
+    top:0;
+    left:0;
+    bottom:0;
+}
+
+.main-content{
+    margin-left:160px;
+    flex:1;
+    background:white;
+}
+
+.menu-btn{
+    background:#f5f5f5;
+    color:black;
+    text-decoration:none;
+
+    padding:12px 18px;
+    border-radius:20px;
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    font-weight:600;
+
+    box-shadow:0 2px 5px rgba(0,0,0,.2);
+}
+
+.back-btn-side{
+    margin-top:auto;
+
+    background:#745113;
+    color:white;
+    text-decoration:none;
+
+    padding:15px;
+    border-radius:15px;
+    text-align:center;
+}
+
+@media (max-width: 768px){
+
+    .container{
+        flex-direction:column;
+    }
+
+    .sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
+        flex-direction:row;
+        justify-content:center;
+        flex-wrap:wrap;
+    }
+
+    .main-content{
+        margin-left:0;
+    }
+
+}
+
+.menu-btn.active{
+    background:#ffffff87;
+    border:2px solid #7f944a;
 }

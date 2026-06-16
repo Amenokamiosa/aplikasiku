@@ -8,7 +8,23 @@
     <link rel="stylesheet" href="{{ asset('css/profil.css') }}">
 </head>
 <body>
+<div class="container">
+    <div class="sidebar">
 
+        <a href="{{ route('events.index') }}" class="menu-btn">
+            🌱 DONATE
+        </a>
+
+        <a href="{{ route('profil') }}" class="menu-btn active">
+            👤 ACCOUNT
+        </a>
+
+        <a href="{{ route('events.index') }}" class="back-btn-side">
+            Back
+        </a>
+
+    </div>
+    <div class="main-content">
     @if(session('success'))
     <script>
         Swal.fire({
@@ -23,10 +39,6 @@
 
     <!-- Header Image -->
     <div class="profile-header">
-
-        <a href="{{ route('pohon') }}" class="back-btn">
-            ← Kembali
-        </a>
 
         <form action="{{ route('logout') }}" method="POST" class="logout-form">
             @csrf
@@ -121,8 +133,8 @@
     </div>
 
     </div>
-</script>
-
+</div>
+</div>
         {{--
         Nanti jika sudah membuat tabel donations:
 

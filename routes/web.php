@@ -5,15 +5,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EventController;
 use App\Models\User;
-
 use Illuminate\Support\Facades\Auth;
-Route::get('/test', function () {
-    return User::all();
-});
+use App\Http\Controllers\DonationController;
 
 Route::get('/', function () {
     if (Auth::check()) {
-        return redirect('/pohon');
+        return redirect('/events');
     }
 
     return redirect('/login');
@@ -27,34 +24,14 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/pohon', [TreeController::class, 'index'])->name('pohon');
-});
 
-Route::post('/logout', [AuthController::class, 'logout'])
-    ->middleware('auth')
-    ->name('logout');
+    Route::get('/events', [EventController::class, 'index'])
+        ->name('events.index');
+    // Route untuk menampilkan halaman form
+    Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
 
-
-
-Route::get('/debug-auth', function () {
-    return [
-        'check' => Auth::check(),
-        'id' => Auth::id(),
-        'user' => Auth::user()?->username,
-    ];
-});
-    
-Route::middleware('auth')->group(function () {
-    Route::get('/pohon', [TreeController::class, 'index'])->name('pohon');
-
-    Route::get('/profil', [AuthController::class, 'profile'])
-        ->name('profil');
-
-    Route::post('/logout', [AuthController::class, 'logout'])
-        ->name('logout');
-});
-
-Route::middleware('auth')->group(function () {
+    Route::get('/events/{id}', [EventController::class, 'show'])
+        ->name('events.show');
 
     Route::get('/profil', [AuthController::class, 'profile'])
         ->name('profil');
@@ -64,20 +41,21 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/profil/edit', [AuthController::class, 'updateProfile'])
         ->name('profil.update');
-});
 
-// Route untuk menampilkan halaman form
-Route::get('/event/create', [EventController::class, 'create'])->name('events.create');
+    Route::post('/logout', [AuthController::class, 'logout'])
+        ->name('logout');
+    
+    // Route untuk menerima kiriman data form
+    Route::post('/events/store', [EventController::class, 'store'])->name('events.store');
 
-// Route untuk menerima kiriman data form
-Route::post('/event/store', [EventController::class, 'store'])->name('events.store');
+    // Route untuk menampilkan halaman form
+    Route::get('/tree/create', [TreeController::class, 'create'])->name('trees.create');
 
-// Route untuk menampilkan halaman form
-Route::get('/tree/create', [TreeController::class, 'create'])->name('trees.create');
+    // Route untuk menerima kiriman data form
+    Route::post('/tree/store', [TreeController::class, 'store'])->name('trees.store');
 
-// Route untuk menerima kiriman data form
-Route::post('/tree/store', [TreeController::class, 'store'])->name('trees.store');
+    Route::post('/donations/store',[DonationController::class, 'store'])
+        ->name('donations.store');
+    });
 
-Route::get('/menu', function(){
-    return view('components.menu');
-});
+
