@@ -24,6 +24,14 @@
                 class="menu-btn">
                 🌳 Create Tree
             </a>
+            <a href="{{ route('events.delete.form') }}"
+                class="menu-btn">
+                    🗑 Delete Event
+                </a>
+
+        <a href="{{ route('trees.delete.form') }}" class="menu-btn">
+            🗑 Delete Tree
+        </a>
         @endif
 
         <a href="{{ route('profil') }}" class="menu-btn active">
@@ -117,31 +125,43 @@
 
     <div class="donation-card">
 
-        <div class="donation-top">
+    <div class="donation-top">
 
-            <div class="donation-label">
-                DONASI
-            </div>
-
-            <div class="donation-title">
-                {{ $donation->event->title }}
-            </div>
-
+        <div class="donation-label">
+            DONASI
         </div>
 
-        <div class="donation-bottom">
-
-            <div class="donation-value-label">
-                NILAI
-            </div>
-
-            <div class="donation-value">
-                Rp {{ number_format($donation->value,0,',','.') }}
-            </div>
-
+        <div class="donation-title">
+            {{ $donation->event->title }}
         </div>
 
     </div>
+
+    <div class="donation-meta">
+
+        <div class="donation-date">
+            🕒 {{ \Carbon\Carbon::parse($donation->date)->format('d M Y - H:i') }}
+        </div>
+
+    </div>
+
+    <div class="donation-bottom">
+
+        <div class="donation-value-label">
+            NILAI
+        </div>
+
+        <div class="donation-value">
+            Rp {{ number_format($donation->value,0,',','.') }}
+        </div>
+
+        <div class="donation-qty">
+            🌱 {{ $donation->tree_quantity }} pohon
+        </div>
+
+    </div>
+
+</div>
 
 @empty
 

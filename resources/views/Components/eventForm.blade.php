@@ -24,8 +24,15 @@
                     class="menu-btn">
                     🌳 Create Tree
                 </a>
+                <a href="{{ route('events.delete.form') }}"
+                class="menu-btn">
+                    🗑 Delete Event
+                </a>
+                <a href="{{ route('trees.delete.form') }}" class="menu-btn">
+                🗑 Delete Tree
+                </a>
             @endif
-            
+
             <a href="{{ route('profil') }}" class="menu-btn">
                 👤 ACCOUNT
             </a>
@@ -50,7 +57,7 @@
                     <input type="file" name="header_img">
 
                     <label>Description</label>
-                    <input type="text" name="description" id="new-event-description" placeholder="Type here...">
+                    <textarea name="description" placeholder="Type here..."></textarea>
 
                     <label>Start</label>
                     <input type="date" name="start" id="new-event-start">

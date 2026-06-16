@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Tree;
 
 class EventController extends Controller
 {
@@ -46,8 +45,8 @@ class EventController extends Controller
             'title' => 'required|string',
             'header_img' => 'required|image|mimes:jpg,jpeg,png|max:5120',
             'description' => 'required',
-            'start' => 'required',
-            'finish' => 'required',
+            'start' => 'required|date',
+            'finish' => 'required|date|after_or_equal:start',
             'status' => 'required',
         ]);
         
@@ -75,8 +74,17 @@ class EventController extends Controller
 
     return view('event-detail', compact('event'));
     }
+    public function edit($id)
+    {
+        if (Auth::user()->role !== 'admin') {
+            abort(403);
+        }
 
-    public function showAddTreeForm($id)
+        $event = Event::findOrFail($id);
+
+        return view('Components.eventEdit', compact('event'));
+    }
+    public function update(Request $request, $id)
 {
     if (Auth::user()->role !== 'admin') {
         abort(403);
@@ -84,31 +92,74 @@ class EventController extends Controller
 
     $event = Event::findOrFail($id);
 
-    $trees = Tree::all();
+    $request->validate([
+        'title' => 'required|string',
+        'header_img' => 'nullable|image|mimes:jpg,jpeg,png|max:5120',
+        'description' => 'required',
+        'start' => 'required',
+        'finish' => 'required',
+        'status' => 'required',
+    ]);
 
-    return view(
-        'event-add-tree',
-        compact('event', 'trees')
-    );
+    $data = [
+        'title' => $request->title,
+        'description' => $request->description,
+        'start' => $request->start,
+        'finish' => $request->finish,
+        'status' => $request->status,
+    ];
+
+    if ($request->hasFile('header_img')) {
+
+        $headerPath = $request->file('header_img')
+            ->store('event_headers', 'public');
+
+        $data['header_img'] = $headerPath;
+    }
+
+    $event->update($data);
+
+    return redirect()
+    ->route('events.index')
+    ->with('success', 'Event berhasil diperbarui!');
 }
-    public function attachTree(Request $request, $id)
+public function deleteForm()
 {
-    if (Auth::user()->role !== 'admin') {
+    if (auth()->user()->role !== 'admin') {
+        abort(403);
+    }
+
+    $events = Event::all();
+
+    return view('Components.eventDelete', compact('events'));
+}
+
+public function deleteMultiple(Request $request)
+{
+    if (auth()->user()->role !== 'admin') {
         abort(403);
     }
 
     $request->validate([
-        'id_tree' => 'required|exists:trees,id_tree'
+        'events' => 'required|array'
     ]);
 
-    $event = Event::findOrFail($id);
+    $events = Event::whereIn(
+        'id_event',
+        $request->events
+    )->get();
 
-    $event->trees()->syncWithoutDetaching([
-        $request->id_tree
-    ]);
+    foreach ($events as $event) {
+
+        // hapus relasi di pivot event_tree
+        $event->trees()->detach();
+
+        // hapus event
+        $event->delete();
+    }
 
     return redirect()
-        ->route('events.show', $id)
-        ->with('success', 'Tree berhasil ditambahkan!');
+        ->route('events.index')
+        ->with('success', 'Event berhasil dihapus.');
 }
 }

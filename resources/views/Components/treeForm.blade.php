@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/event.css') }}">
     <title>Document</title>
 </head>
 <body>
@@ -24,6 +24,13 @@
                     class="menu-btn active">
                     🌳 Create Tree
                 </a>
+                <a href="{{ route('events.delete.form') }}"
+                class="menu-btn">
+                    🗑 Delete Event
+                </a>
+                <a href="{{ route('trees.delete.form') }}" class="menu-btn">
+                🗑 Delete Tree
+                </a>
             @endif
             
             <a href="{{ route('profil') }}" class="menu-btn">
@@ -36,6 +43,7 @@
 
         </div>
         <div class="main-content">
+            <div class="new-event-form">
             <label class="window-title">
                 New Tree Form
             </label>
@@ -74,6 +82,7 @@
                 </button>
 
             </form>
+        </div>
         </div>
     </div>
 </div>

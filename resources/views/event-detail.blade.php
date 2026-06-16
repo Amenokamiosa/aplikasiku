@@ -39,7 +39,11 @@ use Illuminate\Support\Str;
     </div>
     <div class="main-content">
         <div class="detail-container">
-
+        @if(session('success'))
+    <div class="success-message">
+        {{ session('success') }}
+    </div>
+@endif
     <div class="event-detail">
 
         <img
@@ -56,17 +60,6 @@ use Illuminate\Support\Str;
                 {{ $event->description }}
             </p>
 
-            @if(Auth::user()->role === 'admin')
-
-                <a href="{{ route('events.trees.form', $event->id_event) }}"
-                    class="add-tree-btn">
-
-                    🌳 Add Tree To Event
-
-                </a>
-
-@endif
-
             <div class="event-meta">
 
                 <div class="meta-item">
@@ -82,6 +75,20 @@ use Illuminate\Support\Str;
                 </div>
 
             </div>
+            @if(Auth::user()->role === 'admin')
+
+                <a href="{{ route('events.edit', $event->id_event) }}"
+                class="donate-btn"
+                style="text-decoration:none; display:inline-block; margin-top:15px;">
+                    ✏️ Edit Event
+                </a>
+                <a href="{{ route('events.trees.create', $event->id_event) }}"
+                class="donate-btn"
+                style="text-decoration:none;display:inline-block;margin-top:15px;">
+                🌳 Add Trees
+                </a>
+
+            @endif
 
         </div>
 
@@ -107,37 +114,55 @@ use Illuminate\Support\Str;
 
                 @foreach($event->trees as $tree)
 
-                    <div class="tree-card">
+<div class="tree-card">
 
-                        <img src="{{ asset('storage/'.$tree->tree_img) }}">
+    <img src="{{ asset('storage/'.$tree->tree_img) }}">
 
-                        <div class="tree-info">
+    <div class="tree-info">
 
-                            <h3>{{ $tree->name }}</h3>
+        <h3>{{ $tree->name }}</h3>
 
-                            <div class="tree-price">
-                                Rp {{ number_format($tree->price,0,',','.') }}
-                            </div>
+        <div class="tree-price">
+            Rp {{ number_format($tree->price,0,',','.') }}
+        </div>
 
-                            <div class="quantity-box">
+        @if(Auth::user()->role === 'admin')
 
-                                <label>Quantity</label>
+            <div style="margin-top:15px;">
+                <a
+                    href="{{ route('events.trees.remove', [
+                        'event' => $event->id_event,
+                        'tree' => $tree->id_tree
+                    ]) }}"
+                    class="remove-tree-btn"
+                    onclick="return confirm('Remove tree from this event?')">
 
-                                <input
-                                    type="number"
-                                    min="0"
-                                    value="0"
-                                    class="qty-input"
-                                    data-price="{{ $tree->price }}"
-                                    name="trees[{{ $tree->id_tree }}]">
+                    🗑 Remove
 
-                            </div>
+                </a>
+            </div>
 
-                        </div>
+        @endif
 
-                    </div>
+        <div class="quantity-box">
 
-                @endforeach
+            <label>Quantity</label>
+
+            <input
+                type="number"
+                min="0"
+                value="0"
+                class="qty-input"
+                data-price="{{ $tree->price }}"
+                name="trees[{{ $tree->id_tree }}]">
+
+        </div>
+
+    </div>
+
+</div>
+
+@endforeach
 
             </div>
         

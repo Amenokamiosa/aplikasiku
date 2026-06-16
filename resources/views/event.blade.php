@@ -27,6 +27,13 @@ use Illuminate\Support\Facades\Auth;
                     class="menu-btn">
                     🌳 Create Tree
                 </a>
+                <a href="{{ route('events.delete.form') }}"
+                class="menu-btn">
+                    🗑 Delete Event
+                </a>
+                <a href="{{ route('trees.delete.form') }}" class="menu-btn">
+                🗑 Delete Tree
+                </a>
             @endif
 
             <a href="{{ route('profil') }}" class="menu-btn">
@@ -39,6 +46,11 @@ use Illuminate\Support\Facades\Auth;
 
         </div>
         <div class="main-content">
+            @if(session('success'))
+                <div class="success-message">
+                    {{ session('success') }}
+                </div>
+            @endif
             <div class="event-section">
 
                 <div class="section-title">

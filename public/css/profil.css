@@ -229,6 +229,41 @@ body{
     color: #6b4d24;
 }
 
+.donation-meta{
+    padding: 0 25px;
+    padding-top: 20px;
+    margin-top: -5px;
+    margin-bottom: 10px;
+    color: #5a4a2a;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.donation-qty{
+    margin-left: auto;
+    font-size: 16px;
+    font-weight: bold;
+    color: #6b4d24;
+}
+
+.donation-card{
+    margin-bottom: 18px;
+    transition: 0.2s;
+}
+
+.donation-card:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+.donation-top{
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.donation-bottom{
+    justify-content: sp;
+}
+
 /*EDIT PROFIL*/
 
 .empty-header{
