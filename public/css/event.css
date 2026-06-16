@@ -514,3 +514,183 @@ body::after{
     }
 
 }
+
+
+/* ===== EVENT FORM ===== */
+
+.new-event-form{
+max-width:900px;
+margin:50px auto;
+padding:40px;
+background:rgba(255,255,255,.5);
+backdrop-filter:blur(12px);
+
+border:1px solid rgba(255,255,255,.4);
+border-radius:30px;
+
+box-shadow:0 8px 25px rgba(0,0,0,.15);
+
+}
+
+.window-title{
+display:block;
+
+font-size:42px;
+font-weight:700;
+
+color:white;
+
+margin-bottom:35px;
+
+text-shadow:
+    0 3px 10px rgba(0,0,0,.3);
+
+}
+
+.event-form{
+display:flex;
+flex-direction:column;
+gap:18px;
+}
+
+.event-form label{
+font-size:16px;
+font-weight:600;
+color:#333;
+}
+
+.event-form input[type="text"],
+.event-form input[type="date"],
+.event-form input[type="file"]{
+width:100%;
+
+padding:16px 18px;
+
+border:none;
+border-radius:18px;
+
+background:rgba(255,255,255,.6);
+backdrop-filter:blur(10px);
+
+outline:none;
+
+font-size:15px;
+
+box-shadow:0 3px 8px rgba(0,0,0,.1);
+
+transition:.25s;
+
+}
+
+.event-form input:focus{
+box-shadow:0 0 0 2px #7f944a;
+}
+
+.event-form textarea{
+width:100%;
+min-height:150px;
+
+resize:vertical;
+
+padding:18px;
+
+border:none;
+border-radius:20px;
+
+background:rgba(255,255,255,.6);
+backdrop-filter:blur(10px);
+
+font-size:15px;
+
+outline:none;
+
+box-shadow:0 3px 8px rgba(0,0,0,.1);
+
+}
+
+.event-form textarea:focus{
+box-shadow:0 0 0 2px #7f944a;
+}
+
+.status-options{
+display:flex;
+gap:25px;
+flex-wrap:wrap;
+
+padding:15px 20px;
+
+background:rgba(255,255,255,.35);
+backdrop-filter:blur(10px);
+
+border-radius:18px;
+
+box-shadow:0 3px 8px rgba(0,0,0,.08);
+
+}
+
+.status-options label{
+cursor:pointer;
+color:#444;
+}
+
+.status-options input[type="radio"]{
+margin-right:6px;
+}
+
+.event-form button{
+margin-top:20px;
+
+border:none;
+
+background:#7f944a;
+color:white;
+
+padding:18px 40px;
+
+border-radius:20px;
+
+font-size:18px;
+font-weight:700;
+
+cursor:pointer;
+
+transition:.3s;
+
+box-shadow:
+    0 8px 20px rgba(127,148,74,.35);
+
+}
+
+.event-form button:hover{
+background:#6e8240;
+
+transform:translateY(-3px);
+
+box-shadow:
+    0 12px 25px rgba(127,148,74,.45);
+
+}
+
+.event-form button:active{
+transform:scale(.98);
+}
+
+/* ===== MOBILE ===== */
+
+@media(max-width:768px){
+
+.new-event-form{
+    margin:25px;
+    padding:25px;
+}
+
+.window-title{
+    font-size:30px;
+}
+
+.status-options{
+    flex-direction:row;
+    gap:12px;
+}
+
+}

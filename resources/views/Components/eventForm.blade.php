@@ -2,37 +2,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/event.css') }}">
     <title>Document</title>
 </head>
 <body>
-    <div class="new-event-form">
-        <label class="window-title">New Event form</label>
-        <form action="{{ route('events.store') }}" method="POST" class="event-form">
-            @csrf <label>Title</label>
-            <input type="text" name="title" id="new-event-title" placeholder="Type here...">
+    <div class="container">
+        <div class="sidebar">
 
-            <label>Header Image URL</label>
-            <input type="text" name="header_img" id="new-event-header" placeholder="Type here...">
+            <a href="{{ route('events.index') }}" class="menu-btn">
+                🌱 DONATE
+            </a>
 
-            <label>Description</label>
-            <input type="text" name="description" id="new-event-description" placeholder="Type here...">
+            @if(Auth::user()->role === 'admin')
 
-            <label>Start</label>
-            <input type="datetime-local" name="start" id="new-event-start">
+                <a href="{{ route('events.create') }}"
+                    class="menu-btn active">
+                    + Create Event
+                </a>
 
-            <label>Finish</label>
-            <input type="datetime-local" name="finish" id="new-event-finish">
+                <a href="{{ route('trees.create') }}"
+                    class="menu-btn">
+                    🌳 Create Tree
+                </a>
+            @endif
+            
+            <a href="{{ route('profil') }}" class="menu-btn">
+                👤 ACCOUNT
+            </a>
 
-            <label>Status</label>
-            <div class="status-options">
-                <input type="radio" name="status" value="ongoing" id="ongoing"> <label for="ongoing">Ongoing</label>
-                <input type="radio" name="status" value="finished" id="finished"> <label for="finished">Finished</label>
-                <input type="radio" name="status" value="suspended" id="suspended"> <label for="suspended">Suspended</label>
+            <a href="{{ route('events.index') }}" class="back-btn-side">
+                Back
+            </a>
+
+        </div>
+        <div class="main-content">
+            <div class="new-event-form">
+                <label class="window-title">New Event form</label>
+                <form
+                action="{{ route('events.store') }}"
+                method="POST"
+                enctype="multipart/form-data"
+                class="event-form">
+                    @csrf <label>Title</label>
+                    <input type="text" name="title" id="new-event-title" placeholder="Type here...">
+
+                    <label>Header Image</label>
+                    <input type="file" name="header_img">
+
+                    <label>Description</label>
+                    <input type="text" name="description" id="new-event-description" placeholder="Type here...">
+
+                    <label>Start</label>
+                    <input type="date" name="start" id="new-event-start">
+
+                    <label>Finish</label>
+                    <input type="date" name="finish" id="new-event-finish">
+
+                    <label>Status</label>
+                    <div class="status-options">
+                        <input type="radio" name="status" value="scheduled" id="scheduled"> <label for="scheduled">Scheduled</label>
+                        <input type="radio" name="status" value="ongoing" id="ongoing"> <label for="ongoing">Ongoing</label>
+                        <input type="radio" name="status" value="completed" id="completed"> <label for="completed">Completed</label>
+                    </div>
+
+                    <button type="submit">Submit Event</button>
+                </form>
             </div>
-
-            <button type="submit">Submit Event</button>
-        </form>
+        </div>
     </div>
 </body>
 </html>

@@ -16,6 +16,18 @@ use Illuminate\Support\Str;
             🌱 DONATE
         </a>
 
+        @if(Auth::user()->role === 'admin')
+
+            <a href="{{ route('events.create') }}"
+                class="menu-btn">
+                + Create Event
+            </a>
+            <a href="{{ route('trees.create') }}"
+                class="menu-btn">
+                🌳 Create Tree
+            </a>
+
+        @endif
         <a href="{{ route('profil') }}" class="menu-btn">
             👤 ACCOUNT
         </a>
@@ -43,6 +55,17 @@ use Illuminate\Support\Str;
             <p class="event-desc">
                 {{ $event->description }}
             </p>
+
+            @if(Auth::user()->role === 'admin')
+
+                <a href="{{ route('events.trees.form', $event->id_event) }}"
+                    class="add-tree-btn">
+
+                    🌳 Add Tree To Event
+
+                </a>
+
+@endif
 
             <div class="event-meta">
 

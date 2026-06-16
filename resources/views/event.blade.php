@@ -1,5 +1,6 @@
 @php
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 @endphp
 
 <!DOCTYPE html>
@@ -15,6 +16,18 @@ use Illuminate\Support\Str;
             <a href="{{ route('events.index') }}" class="menu-btn active">
                 🌱 DONATE
             </a>
+
+            @if(Auth::user()->role === 'admin')
+
+                <a href="{{ route('events.create') }}"
+                    class="menu-btn">
+                    + Create Event
+                </a>
+                <a href="{{ route('trees.create') }}"
+                    class="menu-btn">
+                    🌳 Create Tree
+                </a>
+            @endif
 
             <a href="{{ route('profil') }}" class="menu-btn">
                 👤 ACCOUNT

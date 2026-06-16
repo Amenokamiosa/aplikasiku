@@ -14,6 +14,17 @@
         <a href="{{ route('events.index') }}" class="menu-btn">
             🌱 DONATE
         </a>
+        @if(Auth::user()->role === 'admin')
+
+            <a href="{{ route('events.create') }}"
+                class="menu-btn">
+                + Create Event
+            </a>
+            <a href="{{ route('trees.create') }}"
+                class="menu-btn">
+                🌳 Create Tree
+            </a>
+        @endif
 
         <a href="{{ route('profil') }}" class="menu-btn active">
             👤 ACCOUNT
@@ -102,21 +113,21 @@
     <!-- Riwayat Donasi (sementara) -->
     <div class="donation-section">
 
-        <div class="donation-card">
+@forelse($user->donations as $donation)
 
-            <div class="donation-top">
+    <div class="donation-card">
 
-                <div class="donation-label">
-                    DONASI
-                </div>
+        <div class="donation-top">
 
-                <div class="donation-title">
-                    Penanaman Bibit Bakau di Pantai Cemara
-                </div>
-
+            <div class="donation-label">
+                DONASI
             </div>
 
-        <div class="donation-image"></div>
+            <div class="donation-title">
+                {{ $donation->event->title }}
+            </div>
+
+        </div>
 
         <div class="donation-bottom">
 
@@ -125,12 +136,20 @@
             </div>
 
             <div class="donation-value">
-                RP 200.000,-
+                Rp {{ number_format($donation->value,0,',','.') }}
             </div>
 
         </div>
 
     </div>
+
+@empty
+
+    <p>Belum ada riwayat donasi.</p>
+
+@endforelse
+
+</div>
 
     </div>
 </div>

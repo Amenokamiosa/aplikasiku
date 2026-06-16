@@ -6,20 +6,77 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="new-tree-form">
-        <label class="window-title">New Tree form</label>
-        <form action="{{ route('trees.store') }}" method="POST" class="tree-form">
-            @csrf <label>Title</label>
-            <input type="text" name="title" id="new-tree-title" placeholder="Type here...">
+<div class="container">
+    <div class="sidebar">
 
-            <label>Header Image URL</label>
-            <input type="text" name="header_img" id="new-tree-header" placeholder="Type here...">
+            <a href="{{ route('events.index') }}" class="menu-btn">
+                🌱 DONATE
+            </a>
 
-            <label>Price</label>
-            <input type="number" name="price" id="new-tree-price" placeholder="Type here..." min="0">
+            @if(Auth::user()->role === 'admin')
 
-            <button type="submit">Submit</button>
-        </form>
+                <a href="{{ route('events.create') }}"
+                    class="menu-btn">
+                    + Create Event
+                </a>
+
+                <a href="{{ route('trees.create') }}"
+                    class="menu-btn active">
+                    🌳 Create Tree
+                </a>
+            @endif
+            
+            <a href="{{ route('profil') }}" class="menu-btn">
+                👤 ACCOUNT
+            </a>
+
+            <a href="{{ route('events.index') }}" class="back-btn-side">
+                Back
+            </a>
+
+        </div>
+        <div class="main-content">
+            <label class="window-title">
+                New Tree Form
+            </label>
+
+            <form
+                action="{{ route('trees.store') }}"
+                method="POST"
+                enctype="multipart/form-data"
+                class="tree-form">
+
+                @csrf
+
+                <label>Tree Name</label>
+
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Enter tree name">
+
+                <label>Tree Image</label>
+
+                <input
+                    type="file"
+                    name="tree_img">
+
+                <label>Price (Rp)</label>
+
+                <input
+                    type="number"
+                    name="price"
+                    min="0"
+                    placeholder="Enter price">
+
+                <button type="submit">
+                    Submit Tree
+                </button>
+
+            </form>
+        </div>
     </div>
+</div>
+
 </body>
 </html>

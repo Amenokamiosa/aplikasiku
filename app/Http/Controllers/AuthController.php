@@ -21,7 +21,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/pohon');
+            return redirect()->intended('/events');
         }
 
         return back()->with('error', 'Username / password salah!');
@@ -63,8 +63,11 @@ class AuthController extends Controller
 
     public function profile()
 {
+    $user = Auth::user()
+        ->load('donations.event');
+
     return view('profil.profil', [
-        'user' => Auth::user()
+        'user' => $user
     ]);
 }
 
@@ -74,6 +77,7 @@ class AuthController extends Controller
         'user' => Auth::user()
     ]);
 }
+
 public function updateProfile(Request $request)
 {
     $user = Auth::user();
@@ -87,7 +91,10 @@ public function updateProfile(Request $request)
     $user->display_name = $request->display_name;
 
     if ($request->hasFile('profile_img')) {
-
+        if ($user->profile_img) {
+            Storage::disk('public')
+                ->delete($user->profile_img);
+        }
         $profilePath = $request->file('profile_img')
             ->store('profile_img', 'public');
 
@@ -95,6 +102,10 @@ public function updateProfile(Request $request)
     }
 
     if ($request->hasFile('header_img')) {
+        if ($user->header_img) {
+            Storage::disk('public')
+                ->delete($user->header_img);
+        }
 
         $headerPath = $request->file('header_img')
             ->store('header_img', 'public');

@@ -56,6 +56,14 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/donations/store',[DonationController::class, 'store'])
         ->name('donations.store');
-    });
+    Route::get('/events/{id}/trees',
+        [EventController::class, 'showAddTreeForm']
+    )->name('events.trees.form');
+
+    Route::post('/events/{id}/trees',
+        [EventController::class, 'attachTree']
+    )->name('events.trees.attach');
+});
+
 
 

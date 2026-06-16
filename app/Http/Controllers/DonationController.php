@@ -22,9 +22,20 @@ class DonationController extends Controller
             {
                 $tree = Tree::find($id_tree);
 
+                if (!$tree) {
+                    continue;
+                }
+
                 $totalValue += $tree->price * $qty;
                 $totalQuantity += $qty;
             }
+        }
+        
+        if ($totalQuantity <= 0) {
+            return back()->with(
+                'error',
+                'Pilih minimal 1 pohon.'
+            );
         }
 
         Donation::create([
