@@ -26,6 +26,13 @@ use Illuminate\Support\Str;
                 class="menu-btn">
                 🌳 Create Tree
             </a>
+            <a href="{{ route('events.delete.form') }}"
+                class="menu-btn">
+                    🗑 Delete Event
+                </a>
+                <a href="{{ route('trees.delete.form') }}" class="menu-btn">
+                🗑 Delete Tree
+                </a>
 
         @endif
         <a href="{{ route('profil') }}" class="menu-btn">
@@ -87,6 +94,7 @@ use Illuminate\Support\Str;
                 style="text-decoration:none;display:inline-block;margin-top:15px;">
                 🌳 Add Trees
                 </a>
+                
 
             @endif
 
